@@ -1,4 +1,39 @@
 <div>
-    <h1 class="text-blue-800">Header</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.</p>
+  <header class="bg-white">
+    <nav class="flex items-center justify-between p-4">
+      <div class="flex flex-col text-sm font-semibold text-gray-900">
+        <a href="#">DE</a>
+        <a href="#">EN</a>
+      </div>
+      <div>
+        <a href="#" class="text-2xl font-black text-gray-900">Baumeister</a>
+      </div>
+      <div class="relative lg:hidden">
+        <div
+          class="w-16 h-12 bg-black text-white flex items-center justify-center"
+          style="
+            clip-path: polygon(5% 20%, 70% 10%, 100% 50%, 80% 100%, 5% 80%);
+          "
+        >
+          <button class="focus:outline-none">
+            <div class="flex flex-col items-center space-y-1">
+              <div class="w-6 h-0.5 bg-white"></div>
+              <div class="w-6 h-0.5 bg-white"></div>
+              <div class="w-6 h-0.5 bg-white"></div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation links  -->
+      <div
+        class="hidden lg:flex flex-col mt-2 text-sm font-semibold text-gray-900"
+      >
+        <a href="#">About</a>
+        <a href="#">Service</a>
+        <a href="#">References</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+  </header>
 </div>
