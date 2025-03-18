@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/output.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/output.css" />
     <title>Website project template</title>
-</head>
-<script>
-    const loadComponents = (id, url, callback) =>  {
-        fetch(url)
+  </head>
+  <script>
+    const loadComponents = (id, url, callback) => {
+      fetch(url)
         .then((response) => response.text())
         .then((html) => {
-            document.getElementById(id).innerHTML = html;
-            if (callback) callback();
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
         });
-    }
+    };
 
     window.onload = () => {
-        loadComponents('header', 'src/sections/header.html', _ => {
-            const nav_list = document.getElementById("nav-list");
-            const nav_btn = document.getElementById("nav-btn");
-            const nav_x = document.getElementById("nav-x");
-            const bugger = document.getElementById("nav-bugger");
-            nav_btn.addEventListener('click', () => {
-                    nav_list.classList.toggle('hidden');
-                    bugger.classList.toggle('hidden');
-                    if (nav_x.classList.contains('hidden')) nav_x.classList.replace('hidden', 'flex');
-                    else nav_x.classList.replace('flex', 'hidden');
-                });
-        });
-        loadComponents('hero', 'src/sections/hero.html');
-        loadComponents('contact', 'src/sections/contact.html');
-        loadComponents('strategy', 'src/sections/strategy.html');
-        loadComponents('footer', 'src/sections/footer.html');
-        
-    }
-</script>
-<body>
+      loadComponents("header", "src/sections/header.html", () => {
+        document
+          .getElementById("mobile-menu-button")
+          .addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.remove("hidden");
+          });
+
+        document
+          .getElementById("close-menu-button")
+          .addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.add("hidden");
+          });
+      });
+
+      loadComponents("hero", "src/sections/hero.html");
+      loadComponents("strategy", "src/sections/strategy.html");
+      loadComponents("contact", "src/sections/contact.html");
+      loadComponents("footer", "src/sections/footer.html");
+    };
+  </script>
+
+  <body>
     <div id="header"></div>
     <div id="hero"></div>
-    <div id="contact"></div>
     <div id="strategy"></div>
+    <div id="contact"></div>
     <div id="footer"></div>
-</body>
+  </body>
 </html>

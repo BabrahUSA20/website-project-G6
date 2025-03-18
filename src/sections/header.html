@@ -1,39 +1,32 @@
 
 <div>
+
   <header class="bg-white">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <nav class="flex items-center justify-between p-4 relative">
       <div class="flex flex-col text-sm font-semibold text-gray-900">
         <a href="#">DE</a>
         <a href="#">EN</a>
       </div>
       <div>
-        <a href="#" class="text-2xl font-black text-gray-900">Baumeister</a>
+        <a href="#" class="text-xl font-black text-gray-900">Baumeister</a>
       </div>
       <div class="relative lg:hidden" id="nav-btn">
         <div
-          class="w-16 h-12 bg-black text-white flex items-center justify-center"
+          class="w-15 h-8 bg-black text-white flex items-center justify-center"
           style="
             clip-path: polygon(5% 20%, 70% 10%, 100% 50%, 80% 100%, 5% 80%);
           "
         >
           <button class="focus:outline-none">
-             <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+             <span class="text-3xl cursor-pointer mx-2 lg:hidden block">
                 <ion-icon name="menu-outline" onclick="Menu(this)"></ion-icon>
             </span>
-            <!-- <div class="flex flex-col items-center space-y-1" id="nav-bugger">
-              <div class="w-6 h-0.5 bg-white"></div>
-              <div class="w-6 h-0.5 bg-white"></div>
-              <div class="w-6 h-0.5 bg-white"></div>
-            </div> -->
-            <!-- <div class="relative w-6 h-6 hidden items-center justify-center" id="nav-x">
-                <div class="absolute w-6 h-0.5 bg-white rotate-45"></div>
-                <div class="absolute w-6 h-0.5 bg-white -rotate-45"></div>
-            </div> -->
+       
           </button>
         </div>
       </div>
-
-      <!-- Navigation links  -->
       <ul
       class="hidden lg:flex flex-col mt-2 text-sm font-semibold text-gray-900"
     >
@@ -51,5 +44,6 @@
 
         }
     </script>
+    
   </header>
 </div>
