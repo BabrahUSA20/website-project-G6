@@ -56,6 +56,35 @@
     loadComponents("contact", "src/sections/contact.html");
     loadComponents("footer", "src/sections/footer.html");
   };
+=======
+    const loadComponents = (id, url, callback) =>  {
+        fetch(url)
+        .then((response) => response.text())
+        .then((html) => {
+            document.getElementById(id).innerHTML = html;
+            if (callback) callback();
+        });
+    }
+
+    window.onload = () => {
+        loadComponents('header', 'src/sections/header.html', _ => {
+            const nav_list = document.getElementById("nav-list");
+            const nav_btn = document.getElementById("nav-btn");
+            const nav_x = document.getElementById("nav-x");
+            const bugger = document.getElementById("nav-bugger");
+            nav_btn.addEventListener('click', () => {
+                    nav_list.classList.toggle('hidden');
+                    bugger.classList.toggle('hidden');
+                    if (nav_x.classList.contains('hidden')) nav_x.classList.replace('hidden', 'flex');
+                    else nav_x.classList.replace('flex', 'hidden');
+                });
+        });
+        // loadComponents('hero', 'src/sections/hero.html');
+        loadComponents('contact', 'src/sections/contact.html');
+        // loadComponents('strategy', 'src/sections/strategy.html');
+        loadComponents('footer', 'src/sections/footer.html');
+        
+    }
 </script>
 
 <body>
