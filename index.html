@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/output.css" />
-    <title>Website project template</title>
-  </head>
-  <script>
-    const loadComponents = (id, url, callback) => {
-      fetch(url)
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById(id).innerHTML = html;
-          if (callback) callback();
-        });
-    };
 
-    window.onload = () => {
-      loadComponents("header", "src/sections/header.html", () => {
-        document
-          .getElementById("mobile-menu-button")
-          .addEventListener("click", function () {
-            document.getElementById("mobile-menu").classList.remove("hidden");
-          });
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/output.css" />
+  <title>Website project template</title>
+</head>
+<script>
+  const loadComponents = (id, url, callback) => {
+    fetch(url)
+      .then((response) => response.text())
+      .then((html) => {
+        document.getElementById(id).innerHTML = html;
+        if (callback) callback();
+      });
+  };
+  window.onload = () => {
+    loadComponents("header", "src/sections/header.html", () => {
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenuButton = document.getElementById("close-menu-button");
+      const logo = document.querySelector(".relative"); 
+      const langSelector = document.querySelector(".flex.flex-col.text-sm.font-semibold"); // Language selector
 
-        document
-          .getElementById("close-menu-button")
-          .addEventListener("click", function () {
-            document.getElementById("mobile-menu").classList.add("hidden");
-          });
+      function openMenu() {
+        mobileMenu.classList.remove("hidden");
+        mobileMenuButton.classList.add("hidden");
+        logo.classList.add("hidden");
+        langSelector.classList.add("hidden");
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.add("hidden");
+        mobileMenuButton.classList.remove("hidden");
+        logo.classList.remove("hidden");
+        langSelector.classList.remove("hidden");
+      }
+      mobileMenuButton.addEventListener("click", openMenu);
+      closeMenuButton.addEventListener("click", closeMenu);
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 1024) {
+          mobileMenu.classList.add("hidden");
+          mobileMenuButton.classList.remove("hidden");
+          logo.classList.remove("hidden");
+          langSelector.classList.remove("hidden");
+        }
       });
 
-      loadComponents("hero", "src/sections/hero.html");
-      loadComponents("contact", "src/sections/contact.html");
-      loadComponents("footer", "src/sections/footer.html");
-    };
-  </script>
 
-  <body>
-    <div id="header"></div>
-    <div id="hero"></div>
-    <div id="contact"></div>
-    <div id="footer"></div>
-  </body>
+    });
+
+    loadComponents("hero", "src/sections/hero.html");
+    loadComponents("contact", "src/sections/contact.html");
+    loadComponents("footer", "src/sections/footer.html");
+  };
+</script>
+
+<body>
+  <div id="header"></div>
+  <div id="hero"></div>
+  <div id="contact"></div>
+  <div id="footer"></div>
+</body>
 </html>
