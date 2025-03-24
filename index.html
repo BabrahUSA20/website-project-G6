@@ -54,50 +54,55 @@
         loadComponents("hero", "src/sections/hero.html", () => {
             const yellow = document.querySelector("#yellow");
             const pink = document.querySelector("#pink");
-            const getPositions = element => {
-                const rect = element.getBoundingClientRect(); // Get the element's position relative to the viewport
-                return {
-                    top: rect.top,
-                    left: rect.left,
-                    right: rect.right,
-                    bottom: rect.bottom
-                };
-            };
-            let xy = {
-                'yellow': getPositions(yellow),
-                'pink': getPositions(pink)
-            }
-            window.addEventListener("scroll", () => {
+            const shapesContainer = document.getElementById('shapes-container');
+            window.addEventListener("_", () => {
                 const makeFixed = element => {
                     if (element.style.position !== "fixed") { // Apply only once to avoid reapplying styles
-                        const rect = element.getBoundingClientRect(); // Get its current position
+                        console.log('fixing, element: ' + element.id + ', position:', element.style.position);
+                        const rect_c = element.getBoundingClientRect(); // Get its current position
+                        const rect_p = shapesContainer.getBoundingClientRect();
+                        const rect = {
+                            top: rect_c.top - rect_p.top,
+                            left: rect_c.left - rect_p.left,
+                            right: rect_c.right - rect_p.right
+                        };
                         element.style.position = "fixed";
+                        element.style.top = `${rect.top}px`; // Keep it at the same position
+                        element.style.left = `${rect.left}px`;
+                        element.style.right = `${rect.right}px`;
+                        element.style.width = `${element.offsetWidth}px`; // Preserve width
+                        // element.style.height = `${rect.height}px`; // Preserve height
+                    }
+                };
+                const makeUnfixed = element => {
+                    if (element.style.position === "fixed") {
+                        console.log('unfixing, element: ' + element.id + ', position:', element.style.position);
+                        const rect_c = element.getBoundingClientRect(); // Get its current position
+                        const rect_p = shapesContainer.getBoundingClientRect();
+                        const rect = {
+                            top: rect_c.top - rect_p.top,
+                            left: rect_c.left - rect_p.left,
+                            right: rect_c.right - rect_p.right
+                        }
+                        element.style.position = "absolute";
                         element.style.top = `${rect.top}px`; // Keep it at the same position
                         element.style.left = `${rect.left}px`;
                         element.style.right = `${rect.right}px`;
                         element.style.width = `${element.offsetWidth}px`; // Preserve width
                         element.style.height = `${rect.height}px`; // Preserve height
                     }
-                };
-                const makeUnfixed = element => {
-                    console.log('triggered at in unfix:', scrollTop);
-                    element.style.position = "absolute"; // Reset when scrolling back up
-                    element.style.top = xy[element.id].top; // Reset to original position
-                    element.style.left = xy[element.id].left;
-                    lement.style.right = xy[element.id].right;
-                    element.style.width = ""; // Reset width
+
                 };
                 const scrollTop = window.scrollY || document.documentElement.scrollTop;
                 console.log('height:', scrollTop);
 
                 const breakPoints = [
-                    { element: yellow, breakPoints: [280]},
+                    { element: yellow, breakPoints: [280] },
                     { element: pink, breakPoints: [290] },
                 ];
                 for (const object of breakPoints) {
-                    if (scrollTop >= Math.min(...object.breakPoints)) {
-                        makeFixed(object.element);
-                    } else if (scrollTop < Math.min(...object.breakPoints)) makeUnfixed(object.element);
+                    if (scrollTop >= Math.min(...object.breakPoints)) makeFixed(object.element);
+                    else if (scrollTop < Math.min(...object.breakPoints)) makeUnfixed(object.element);
                 }
             });
 
